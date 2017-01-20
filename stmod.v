@@ -1,6 +1,8 @@
-Set Automatic Coercions Import.
-Require Import ssreflect ssrbool ssrfun ssrnat eqtype seq.
+From mathcomp
+     Require Import ssreflect ssrbool ssrfun ssrnat eqtype seq.
 Require Import pred prelude idynamic pcm unionmap heap domain.
+
+Set Automatic Coercions Import.
 Set Implicit Arguments.
 Unset Strict Implicit.
 Unset Printing Implicit Defensive. 
@@ -25,7 +27,7 @@ Canonical Structure exn_eqType := EqType exn exn_eqMixin.
 
 (* Answer type *)
 Inductive ans (A : Type) : Type := Val of A | Exn of exn.
-Implicit Arguments Exn [A].
+Arguments Exn [A].
 
 Notation pre := (Pred heap).
 Notation post A := (ans A -> heap -> heap -> Prop).
@@ -207,8 +209,8 @@ Proof. by case: e=>p M S; apply. Qed.
 
 End STDef.
 
-Implicit Arguments spec_runs [A s i y m].
-Prenex Implicits bot_runs model_runs def_runs spec_runs.
+Arguments spec_runs {A s i y m}.
+Prenex Implicits bot_runs model_runs def_runs.
 
 (************************************)
 (* modeling the language primitives *)

@@ -1,4 +1,5 @@
-Require Import ssreflect ssrfun Eqdep prelude.
+From mathcomp Require Import ssreflect ssrfun.
+Require Import Eqdep prelude.
 Set Implicit Arguments.
 Unset Strict Implicit.
 Unset Printing Implicit Defensive.
@@ -64,7 +65,7 @@ End IndexedDynamic.
 
 Prenex Implicits idyn_tp idyn_val idyn_injT idyn_inj.
 
-Implicit Arguments icoerce [I A B].
+Arguments icoerce [I] _  A B.
 
 Hint Resolve ijmeq_refl.
 

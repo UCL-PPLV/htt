@@ -1,5 +1,6 @@
-Require Import ssreflect ssrbool ssrnat eqtype ssrfun seq path fintype ordtype.
-Require Import pred prelude.
+From mathcomp
+     Require Import ssreflect ssrbool ssrnat eqtype ssrfun seq path fintype.
+Require Import ordtype pred prelude.
 Set Implicit Arguments.
 Unset Strict Implicit.
 Unset Printing Implicit Defensive. 
@@ -1251,8 +1252,3 @@ by move=>H x; move/H/negbTE=>->.
 Qed.
 
 End Zip.
-
-
-
-
-

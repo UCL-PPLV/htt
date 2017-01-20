@@ -1,4 +1,5 @@
-Require Import ssreflect ssrbool ssrnat eqtype ssrfun seq.
+From mathcomp
+     Require Import ssreflect ssrbool ssrnat eqtype ssrfun seq.
 Require Import pred prelude ordtype domain finmap.
 Set Implicit Arguments.
 Unset Strict Implicit.
@@ -41,7 +42,7 @@ Definition unit := unit_op class.
 
 End ClassDef.
 
-Implicit Arguments unit [cT].
+Arguments unit [cT].
 
 Definition morph_axiom (A B : type) (f : sort A -> sort B) := 
   f unit = unit /\ forall x y, f (join x y) = join (f x) (f y). 
@@ -63,8 +64,8 @@ Notation "x \+ y" := (join x y) (at level 43, left associativity).
 Notation valid := valid.
 Notation Unit := unit.
 
-Implicit Arguments unit [cT].
-Prenex Implicits join unit. 
+Arguments unit {cT}.
+Arguments join {cT}. 
 
 Section Morphism.
 Variables A B : pcm.
@@ -188,6 +189,7 @@ Definition ounit := ounit_op class.
 Definition ojoin := ojoin_op class.
 
 End ClassDef.
+Arguments ounit {cT}.
 
 Module Exports.
 Coercion sort : type >-> Sortclass.
@@ -204,8 +206,6 @@ Notation "[ 'unlifted' 'of' T ]" := (@clone T _ _ id id)
 
 Notation ounit := ounit. 
 Notation ojoin := ojoin.
-
-Implicit Arguments ounit [cT].
 
 Lemma ojoinC (U : unlifted) (x y : U) : ojoin x y = ojoin y x.
 Proof. by case: U x y=>T [ou oj ojC]. Qed.
@@ -375,7 +375,7 @@ Definition ojoin x y :=
   | _, _ => None
   end.
 
-Let ounit := nown.
+Local Notation ounit := nown.
 
 Lemma ojoinC x y : ojoin x y = ojoin y x.
 Proof. by case: x; case: y. Qed.

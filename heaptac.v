@@ -1,9 +1,9 @@
-Require Import ssreflect ssrfun ssrnat div ssrbool seq path eqtype.
-Require Import Eqdep pred idynamic ordtype pcm finmap unionmap heap. 
+From mathcomp
+     Require Import ssreflect ssrfun ssrnat div ssrbool seq path eqtype.
+Require Import Eqdep pred idynamic ordtype pcm finmap unionmap heap.
 Set Implicit Arguments.
 Unset Strict Implicit.
-Unset Printing Implicit Defensive. 
-
+Unset Printing Implicit Defensive.
 
 (**************************************************************************)
 (* Several tactics for canceling common terms in disjoint unions          *)
@@ -32,7 +32,7 @@ Lemma eqUh h1 h2 h :
         valid (h1 \+ h) -> h1 \+ h = h2 \+ h -> valid h1 /\ h1 = h2. 
 Proof. by move=>D E; rewrite {2}(joinKf D E) (validL D). Qed.
 
-Lemma exit1 h1 h2 h : valid (h1 \+ h) -> h1 \+ h = h \+ h2 -> valid h1 /\ h1 = h2.
+Lemma exit1 h1 h2 h: valid (h1 \+ h) -> h1 \+ h = h \+ h2 -> valid h1 /\ h1 = h2.
 Proof. by move=>D; rewrite (joinC h); apply: eqUh. Qed.
 
 Lemma exit2 h1 h : valid (h1 \+ h) -> h1 \+ h = h -> valid h1 /\ h1 = Unit.

@@ -1,4 +1,5 @@
-Require Import ssreflect ssrbool ssrnat eqtype ssrfun seq path fintype.
+From mathcomp
+     Require Import ssreflect ssrbool ssrnat eqtype ssrfun seq  path fintype.
 Set Implicit Arguments.
 Unset Strict Implicit.
 Unset Printing Implicit Defensive. 
@@ -57,8 +58,7 @@ Notation "[ 'ordType' 'of' T ]" := (@clone T _ _ id)
 End Exports.
 End Ordered.
 Export Ordered.Exports.
-
-Prenex Implicits ord.
+Arguments ord {T}.
 
 Section Lemmas.
 Variable T : ordType.

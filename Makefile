@@ -1,9 +1,13 @@
-MODULES := pred prelude idynamic ordtype pperm finmap domain pcm unionmap heap heaptac stmod stsep stlog stlogR array llistR
-RELEASE := $(MODULES:%=%.v) Makefile Makefile.build
-ssr.pname := $(SSRCOQ_LIB)
-ssr.lname := Ssreflect
-COQLIBS := ssr
+WS := "-w -notation-overridden,-redundant-canonical-projection"
 
-include Makefile.build
+default: Makefile.coq
+	make -f Makefile.coq
 
-all: coq
+clean: Makefile.coq
+	make -f Makefile.coq clean
+	rm -f Makefile.coq
+
+Makefile.coq: _CoqProject
+	coq_makefile -arg $(WS) -f _CoqProject > Makefile.coq
+
+.PHONY: default clean

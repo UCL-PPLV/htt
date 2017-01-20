@@ -1,4 +1,4 @@
-Require Import ssreflect ssrbool ssrnat eqtype ssrfun seq.
+From mathcomp Require Import ssreflect ssrbool ssrnat eqtype ssrfun seq.
 Require Import idynamic ordtype finmap pcm.
 Set Implicit Arguments.
 Unset Strict Implicit.
@@ -12,7 +12,7 @@ Module UM.
 Section UM.
 Variables (K : ordType) (V : Type) (p : pred K).
 
-Structure base := 
+Inductive base := 
   Undef | Def (f : {finMap K -> V}) of all p (supp f).
 
 Section FormationLemmas.
@@ -208,9 +208,9 @@ Definition pts : keys -> vals -> cT := pts_op (mixin class).
 
 End ClassDef.
 
-Implicit Arguments um_undef [cT].
-Implicit Arguments empty [cT].
-Prenex Implicits to um_undef empty.
+Arguments um_undef {cT}.
+Arguments empty {cT}.
+Prenex Implicits to.
 
 Section Lemmas.
 Variable U : type.
@@ -1669,7 +1669,7 @@ Lemma um_ind' (P : U -> Prop) :
          P um_undef -> P Unit ->
          (forall k v f, P f -> valid (k \\-> v \+ f) -> P (k \\-> v \+ f)) ->
          forall f, P f.
-Proof. exact: gen_ind'. Qed.
+Proof. by move=>H1 H2 H3; apply: gen_ind'. Qed.
 
 End UMPointsToLemmas.
 

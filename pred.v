@@ -1,4 +1,6 @@
-Require Import ssreflect ssrfun ssrbool eqtype seq Setoid Morphisms.
+From mathcomp Require Import ssreflect ssrfun ssrbool eqtype seq.
+Require Import Setoid Morphisms.
+
 Set Implicit Arguments.
 Unset Strict Implicit. 
 Unset Printing Implicit Defensive. 
@@ -93,10 +95,9 @@ Canonical Structure simplpredPredType :=
   Eval hnf in @mkPredType (simpl_pred T) (fun p x => p x).
 
 End Predicates.
-
-Implicit Arguments Pred0 [T].
-Implicit Arguments PredT [T].
-Prenex Implicits Pred0 PredT PredI PredU PredC PredD Preim.
+Arguments Pred0 {T}.
+Arguments PredT {T}.
+Prenex Implicits PredI PredU PredC PredD Preim.
 
 Notation "r1 +p r2" := (PredU r1 r2 : Pred _) 
   (at level 55, right associativity) : rel_scope.

@@ -1,7 +1,8 @@
-Require Import ssreflect ssrbool ssrnat eqtype seq ssrfun.
+From mathcomp
+     Require Import ssreflect ssrbool ssrnat eqtype seq ssrfun.
 Require Import pred pcm unionmap heap heaptac stmod stsep stlog stlogR. 
 Set Implicit Arguments. 
-Unset Strict Implicit. 
+Unset Strict Implicit.
 Set Automatic Coercions Import.
 Unset Printing Implicit Defensive. 
 
