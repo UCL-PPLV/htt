@@ -44,6 +44,22 @@ Qed.
 
 (******************************************************************)
 
+(* Some notes:
+
+The problem with HTT proofs is that they are not incremental in the
+program construction. Specifically, we first construct the program,
+then is WPs are inferred, and the we have to discharge the proof
+obligations coming from the weakening (consequence) rule. Ideally,
+what we'd like to have is the goal to be refined based on the program
+we write... This might require to overhaul the whole structure of the
+HTT development in order to implement the reflection between the proof
+goals and the syntactic component.  *)
+
+(* Alternatively, we can just try to fiddle with the unification order
+of Coq's wildcard mechanism. *)
+
+
+
 (* Type of recursive map *)
 Definition llist_map_type (f : T -> S) :=
   forall (p : ptr),   
